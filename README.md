@@ -36,6 +36,7 @@ Author(s)
 -------
 
 [Triggertrap Limited](https://github.com/TriggerTrap)
+
 [Ross Gibson](https://github.com/Ross-Gibson)
 
 Licence
