@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.authors      = { "Triggertrap Ltd" => "support@triggertrap.com", "Ross Gibson" => "ross@triggertrap.com" }
   s.platform     = :ios, '6.0'
   s.source       = { :git => "https://github.com/TriggerTrap/TTCounterLabel.git", :tag => "1.0.0" }
-  s.source_files  = 'Classes', 'Classes/**/*.{h,m}'
+  s.source_files  = 'Source', 'Source/**/*.{h,m}'
   s.requires_arc = true
   s.dependency 'TTTAttributedLabel', '~> 1.7.1'
 end
