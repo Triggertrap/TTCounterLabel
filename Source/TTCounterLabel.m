@@ -70,7 +70,7 @@
 #pragma mark - Private
 
 - (void)updateDisplay {
-    if (self.countDirection == kCountDirectionDown && _value < 100) {
+    if (self.countDirection == kCountDirectionDown && _value < 100 && self.isRunning) {
         [self stop];
         self.valueString = @"00s.00";
         
