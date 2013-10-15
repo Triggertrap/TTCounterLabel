@@ -16,7 +16,7 @@ If you're unfamiliar with CocoaPods there is a great tutorial [here](http://www.
 3. Open the Podfile using 'open -e Podfile'
 4. Add the pod `TTCounterLabel` to your [Podfile](https://github.com/CocoaPods/CocoaPods/wiki/A-Podfile).
         platform :ios
-        pod 'TTCounterLabel'
+        pod TTCounterLabel'
 5. Run `pod install`.
 6. Open your app's `.xcworkspace` file to launch Xcode and start using the control!
 
