@@ -70,7 +70,9 @@
 #pragma mark - Private
 
 - (void)updateDisplay {
-    if (self.countDirection == kCountDirectionDown && _value < 100 && self.isRunning) {
+    // The control only displays the 10th of a millisecond, and 50 ms is enough to
+    // ensure we see the last digit go to zero.
+    if (self.countDirection == kCountDirectionDown && _value < 50 && self.isRunning) {
         [self stop];
         self.valueString = @"00s.00";
         
