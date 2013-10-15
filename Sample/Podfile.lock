@@ -1,10 +1,18 @@
 PODS:
+  - TTCounterLabel (1.0.0):
+    - TTTAttributedLabel (~> 1.7.1)
   - TTTAttributedLabel (1.7.1)
 
 DEPENDENCIES:
+  - TTCounterLabel (from `https://github.com/TriggerTrap/TTCounterLabel.git`)
   - TTTAttributedLabel (~> 1.7.1)
 
+EXTERNAL SOURCES:
+  TTCounterLabel:
+    :git: https://github.com/TriggerTrap/TTCounterLabel.git
+
 SPEC CHECKSUMS:
+  TTCounterLabel: 499830fde92343494141f6f1907567359094dfa5
   TTTAttributedLabel: e504133915a9b11de63cb470ffa2790383a3eb23
 
 COCOAPODS: 0.26.2
