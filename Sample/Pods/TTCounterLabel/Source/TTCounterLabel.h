@@ -25,8 +25,8 @@ typedef NS_ENUM(NSInteger, kCountDirection){
 @interface TTCounterLabel : TTTAttributedLabel
 
 @property (weak) id <TTCounterLabelDelegate> countdownDelegate;
-@property (nonatomic, assign) unsigned long currentValue;
-@property (nonatomic, assign) unsigned long startValue;
+@property (nonatomic, assign) unsigned long long currentValue;
+@property (nonatomic, assign) unsigned long long startValue;
 @property (nonatomic, assign) NSInteger countDirection;
 @property (strong, nonatomic) UIFont *boldFont;
 @property (strong, nonatomic) UIFont *regularFont;
