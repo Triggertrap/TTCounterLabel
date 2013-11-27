@@ -108,10 +108,10 @@
     
     [self setText:self.valueString afterInheritingLabelAttributesAndConfiguringWithBlock:^ NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
         
-        int msperhour = 3600000;
-        int hrs = (int)weakSelf.value / msperhour;
+        unsigned long msperhour = 3600000;
+        unsigned long hrs = weakSelf.value / msperhour;
         
-        NSString *hoursString = [NSString stringWithFormat:@"%d", hrs];
+        NSString *hoursString = [NSString stringWithFormat:@"%lu", hrs];
         
         NSUInteger hrsLength = hoursString.length;
         
@@ -190,12 +190,12 @@
     
     if (hrs == 0) {
         if (mins == 0) {
-            formattedString = [NSString stringWithFormat:@"%02ds.%02d", secs, frac];
+            formattedString = [NSString stringWithFormat:@"%02lus.%02lu", secs, frac];
         } else {
-            formattedString = [NSString stringWithFormat:@"%02dm %02ds.%02d", mins, secs, frac];
+            formattedString = [NSString stringWithFormat:@"%02lum %02lus.%02lu", mins, secs, frac];
         }
     } else {
-        formattedString = [NSString stringWithFormat:@"%02dh %02dm %02ds.%02d", hrs, mins, secs, frac];
+        formattedString = [NSString stringWithFormat:@"%02luh %02lum %02lus.%02lu", hrs, mins, secs, frac];
     }
     
     return formattedString;
