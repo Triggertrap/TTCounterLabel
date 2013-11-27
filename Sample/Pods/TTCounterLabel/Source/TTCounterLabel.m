@@ -63,7 +63,11 @@
     } else {
         // The value is negative, or too large
         NSLog(@"Invalid value: value of %lu is invalid, either negative or too large", value);
-        return;
+        
+        NSLog(@"Setting value to the max value of ULONG_MAX - 1");
+        _value = (ULONG_MAX - 1);
+        self.currentValue = _value;
+        [self updateDisplay];
     }
 }
 
@@ -75,7 +79,11 @@
     } else {
         // The value is negative, or too large
         NSLog(@"Invalid value: startValue of %lu is invalid, either negative or too large", startValue);
-        return;
+        
+        NSLog(@"Setting startValue to the max value of ULONG_MAX - 1");
+        _startValue = (ULONG_MAX - 1);
+        self.resetValue = _startValue;
+        [self setValue:startValue];
     }
 }
 
