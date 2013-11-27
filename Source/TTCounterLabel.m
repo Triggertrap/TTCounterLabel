@@ -229,12 +229,6 @@
     [self setValue:self.resetValue];
 }
 
-- (void)repeat {
-    self.startTime = CFAbsoluteTimeGetCurrent();
-    self.startValue = self.resetValue;
-    [self setValue:self.resetValue];
-}
-
 - (void)updateApperance {
     [self setValue:_currentValue];
 }
