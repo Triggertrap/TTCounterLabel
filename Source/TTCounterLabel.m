@@ -14,8 +14,8 @@
 
 @property (strong, nonatomic) NSString *valueString;
 @property (strong, nonatomic) NSTimer *clockTimer;
-@property (nonatomic, assign) unsigned long value;
-@property (nonatomic, assign) unsigned long resetValue;
+@property (nonatomic, assign) unsigned long long value;
+@property (nonatomic, assign) unsigned long long resetValue;
 @property (nonatomic, assign) double startTime;
 @property (nonatomic, assign) BOOL running;
 
@@ -55,14 +55,14 @@
 
 #pragma mark - Setters
 
-- (void)setValue:(unsigned long)value {
+- (void)setValue:(unsigned long long)value {
     if (value < ULONG_MAX) {
         _value = value;
         self.currentValue = _value;
         [self updateDisplay];
     } else {
         // The value is negative, or too large
-        NSLog(@"Invalid value: value of %lu is invalid, either negative or too large", value);
+        NSLog(@"Invalid value: value of %llu is invalid, either negative or too large", value);
         
         NSLog(@"Setting value to the max value of ULONG_MAX - 1");
         _value = (ULONG_MAX - 1);
@@ -71,14 +71,14 @@
     }
 }
 
-- (void)setStartValue:(unsigned long)startValue {
+- (void)setStartValue:(unsigned long long)startValue {
     if (startValue < ULONG_MAX) {
         _startValue = startValue;
         self.resetValue = _startValue;
         [self setValue:startValue];
     } else {
         // The value is negative, or too large
-        NSLog(@"Invalid value: startValue of %lu is invalid, either negative or too large", startValue);
+        NSLog(@"Invalid value: startValue of %llu is invalid, either negative or too large", startValue);
         
         NSLog(@"Setting startValue to the max value of ULONG_MAX - 1");
         _startValue = (ULONG_MAX - 1);
@@ -108,10 +108,10 @@
     
     [self setText:self.valueString afterInheritingLabelAttributesAndConfiguringWithBlock:^ NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
         
-        unsigned long msperhour = 3600000;
-        unsigned long hrs = weakSelf.value / msperhour;
+        unsigned long long msperhour = 3600000;
+        unsigned long long hrs = weakSelf.value / msperhour;
         
-        NSString *hoursString = [NSString stringWithFormat:@"%lu", hrs];
+        NSString *hoursString = [NSString stringWithFormat:@"%llu", hrs];
         
         NSUInteger hrsLength = hoursString.length;
         
@@ -168,7 +168,7 @@
     double elapsedTime = currentTime - self.startTime;
     
     // Convert the double to milliseconds
-    unsigned long milliSecs = (unsigned long)(elapsedTime * 1000);
+    unsigned long long milliSecs = (unsigned long long)(elapsedTime * 1000);
     
     if (self.countDirection == kCountDirectionDown) {
         [self setValue:(_startValue - milliSecs)];
@@ -177,25 +177,25 @@
     }
 }
 
-- (NSString *)timeFormattedStringForValue:(unsigned long)value {
-    unsigned long msperhour = 3600000;
-    unsigned long mspermin = 60000;
+- (NSString *)timeFormattedStringForValue:(unsigned long long)value {
+    unsigned long long msperhour = 3600000;
+    unsigned long long mspermin = 60000;
     
-    unsigned long hrs = value / msperhour;
-    unsigned long mins = (value % msperhour) / mspermin;
-    unsigned long secs = ((value % msperhour) % mspermin) / 1000;
-    unsigned long frac = value % 1000 / 10;
+    unsigned long long hrs = value / msperhour;
+    unsigned long long mins = (value % msperhour) / mspermin;
+    unsigned long long secs = ((value % msperhour) % mspermin) / 1000;
+    unsigned long long frac = value % 1000 / 10;
     
     NSString *formattedString = @"";
     
     if (hrs == 0) {
         if (mins == 0) {
-            formattedString = [NSString stringWithFormat:@"%02lus.%02lu", secs, frac];
+            formattedString = [NSString stringWithFormat:@"%02llus.%02llu", secs, frac];
         } else {
-            formattedString = [NSString stringWithFormat:@"%02lum %02lus.%02lu", mins, secs, frac];
+            formattedString = [NSString stringWithFormat:@"%02llum %02llus.%02llu", mins, secs, frac];
         }
     } else {
-        formattedString = [NSString stringWithFormat:@"%02luh %02lum %02lus.%02lu", hrs, mins, secs, frac];
+        formattedString = [NSString stringWithFormat:@"%02lluh %02llum %02llus.%02llu", hrs, mins, secs, frac];
     }
     
     return formattedString;
