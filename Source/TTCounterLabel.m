@@ -56,18 +56,30 @@
 #pragma mark - Setters
 
 - (void)setValue:(unsigned long)value {
-    _value = value;
-    self.currentValue = _value;
-    [self updateDisplay];
+    if (value < ULONG_MAX) {
+        _value = value;
+        self.currentValue = _value;
+        [self updateDisplay];
+    } else {
+        // The value is negative, or too large
+        NSLog(@"Invalid value: value of %lu is invalid, either negative or too large", value);
+        return;
+    }
 }
 
 - (void)setStartValue:(unsigned long)startValue {
-    _startValue = startValue;
-    self.resetValue = _startValue;
-    [self setValue:startValue];
+    if (startValue < ULONG_MAX) {
+        _startValue = startValue;
+        self.resetValue = _startValue;
+        [self setValue:startValue];
+    } else {
+        // The value is negative, or too large
+        NSLog(@"Invalid value: startValue of %lu is invalid, either negative or too large", startValue);
+        return;
+    }
 }
 
-#pragma mark - Private
+#pragma mark - Private Methods
 
 - (void)updateDisplay {
     // The control only displays the 10th of a millisecond, and 50 ms is enough to
@@ -88,15 +100,28 @@
     
     [self setText:self.valueString afterInheritingLabelAttributesAndConfiguringWithBlock:^ NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
         
+        int msperhour = 3600000;
+        int hrs = (int)weakSelf.value / msperhour;
+        
+        NSString *hoursString = [NSString stringWithFormat:@"%d", hrs];
+        
+        NSUInteger hrsLength = hoursString.length;
+        
         // Hours
         if (weakSelf.value > 3599999) {
             // The hours will be bold font, we need to set the font for the mins and secs
             CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)weakSelf.regularFont.fontName, weakSelf.regularFont.pointSize, NULL);
             
             if (font) {
-                [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:NSMakeRange(4, 2)];
-                [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:NSMakeRange(8, 2)];
-                CFRelease(font);
+                if (hrsLength > 2) {
+                    [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:NSMakeRange((hrsLength + 2), 2)];
+                    [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:NSMakeRange((hrsLength + 6), 2)];
+                    CFRelease(font);
+                } else {
+                    [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:NSMakeRange(4, 2)];
+                    [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:NSMakeRange(8, 2)];
+                    CFRelease(font);
+                }
             }
         }
         
@@ -114,8 +139,13 @@
         CTFontRef boldFont = CTFontCreateWithName((__bridge CFStringRef)weakSelf.boldFont.fontName, weakSelf.boldFont.pointSize, NULL);
         
         if (boldFont) {
-            [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)boldFont range:NSMakeRange(0, 2)];
-            CFRelease(boldFont);
+            if (hrsLength > 2) {
+                [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)boldFont range:NSMakeRange(0, hrsLength)];
+                CFRelease(boldFont);
+            } else {
+                [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)boldFont range:NSMakeRange(0, 2)];
+                CFRelease(boldFont);
+            }
         }
         
         return mutableAttributedString;
@@ -143,7 +173,7 @@
     int msperhour = 3600000;
     int mspermin = 60000;
     
-    int hrs = value / msperhour;
+    int hrs = (int)value / msperhour;
     int mins = (value % msperhour) / mspermin;
     int secs = ((value % msperhour) % mspermin) / 1000;
     int frac = value % 1000 / 10;
@@ -163,7 +193,7 @@
     return formattedString;
 }
 
-#pragma mark - Public
+#pragma mark - Public Methods
 
 - (void)start {
     if (self.running) return;
