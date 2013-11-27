@@ -178,13 +178,13 @@
 }
 
 - (NSString *)timeFormattedStringForValue:(unsigned long)value {
-    int msperhour = 3600000;
-    int mspermin = 60000;
+    unsigned long msperhour = 3600000;
+    unsigned long mspermin = 60000;
     
-    int hrs = (int)value / msperhour;
-    int mins = (value % msperhour) / mspermin;
-    int secs = ((value % msperhour) % mspermin) / 1000;
-    int frac = value % 1000 / 10;
+    unsigned long hrs = value / msperhour;
+    unsigned long mins = (value % msperhour) / mspermin;
+    unsigned long secs = ((value % msperhour) % mspermin) / 1000;
+    unsigned long frac = value % 1000 / 10;
     
     NSString *formattedString = @"";
     
