@@ -56,7 +56,7 @@
 #pragma mark - Setters
 
 - (void)setValue:(unsigned long long)value {
-    if (value < ULONG_MAX) {
+    if (value < ULONG_LONG_MAX) {
         _value = value;
         self.currentValue = _value;
         [self updateDisplay];
@@ -64,15 +64,15 @@
         // The value is negative, or too large
         NSLog(@"Invalid value: value of %llu is invalid, either negative or too large", value);
         
-        NSLog(@"Setting value to the max value of ULONG_MAX - 1");
-        _value = (ULONG_MAX - 1);
+        NSLog(@"Setting value to the max value of ULONG_LONG_MAX - 1");
+        _value = (ULONG_LONG_MAX - 1);
         self.currentValue = _value;
         [self updateDisplay];
     }
 }
 
 - (void)setStartValue:(unsigned long long)startValue {
-    if (startValue < ULONG_MAX) {
+    if (startValue < ULONG_LONG_MAX) {
         _startValue = startValue;
         self.resetValue = _startValue;
         [self setValue:startValue];
@@ -80,8 +80,8 @@
         // The value is negative, or too large
         NSLog(@"Invalid value: startValue of %llu is invalid, either negative or too large", startValue);
         
-        NSLog(@"Setting startValue to the max value of ULONG_MAX - 1");
-        _startValue = (ULONG_MAX - 1);
+        NSLog(@"Setting startValue to the max value of ULONG_LONG_MAX - 1");
+        _startValue = (ULONG_LONG_MAX - 1);
         self.resetValue = _startValue;
         [self setValue:startValue];
     }
