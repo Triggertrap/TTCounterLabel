@@ -10,7 +10,7 @@
 #define COCOAPODS_POD_AVAILABLE_TTCounterLabel
 #define COCOAPODS_VERSION_MAJOR_TTCounterLabel 1
 #define COCOAPODS_VERSION_MINOR_TTCounterLabel 0
-#define COCOAPODS_VERSION_PATCH_TTCounterLabel 0
+#define COCOAPODS_VERSION_PATCH_TTCounterLabel 2
 
 // TTTAttributedLabel
 #define COCOAPODS_POD_AVAILABLE_TTTAttributedLabel

@@ -86,17 +86,17 @@ typedef NS_ENUM(NSInteger, kTTCounter){
 - (void)updateUIForState:(NSInteger)state {
     switch (state) {
         case kTTCounterRunning:
-            [self.startStopButton setTitle:@"Stop" forState:UIControlStateNormal];
+            [self.startStopButton setTitle:NSLocalizedString(@"Stop", @"Stop") forState:UIControlStateNormal];
             self.resetButton.hidden = YES;
             break;
             
         case kTTCounterStopped:
-            [self.startStopButton setTitle:@"Start" forState:UIControlStateNormal];
+            [self.startStopButton setTitle:NSLocalizedString(@"Start", @"Start") forState:UIControlStateNormal];
             self.resetButton.hidden = NO;
             break;
             
         case kTTCounterReset:
-            [self.startStopButton setTitle:@"Start" forState:UIControlStateNormal];
+            [self.startStopButton setTitle:NSLocalizedString(@"Start", @"Start") forState:UIControlStateNormal];
             self.resetButton.hidden = YES;
             self.startStopButton.hidden = NO;
             break;

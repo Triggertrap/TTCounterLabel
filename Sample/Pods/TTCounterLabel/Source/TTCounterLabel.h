@@ -13,10 +13,14 @@ typedef NS_ENUM(NSInteger, kCountDirection){
     kCountDirectionDown
 };
 
+#pragma mark - TTCounterLabelDelegate
+
 @protocol TTCounterLabelDelegate <NSObject>
 @optional
 - (void)countdownDidEnd;
 @end
+
+#pragma mark - TTCounterLabel
 
 @interface TTCounterLabel : TTTAttributedLabel
 
@@ -28,7 +32,7 @@ typedef NS_ENUM(NSInteger, kCountDirection){
 @property (strong, nonatomic) UIFont *regularFont;
 @property (nonatomic, assign) BOOL isRunning;
 
-#pragma mark - Public
+#pragma mark - Public Methods
 
 - (void)start;
 - (void)stop;
