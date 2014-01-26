@@ -53,18 +53,18 @@ typedef NS_ENUM(NSInteger, kTTCounter){
     if (self.counterLabel.isRunning) {
         [self.counterLabel stop];
         
-        [self updateUIForState:kTTCounterStopped];
+        [self updateUIForState:kTTCounterStopped withSource:self.counterLabel];
     } else {
         [self.counterLabel start];
         
-        [self updateUIForState:kTTCounterRunning];
+        [self updateUIForState:kTTCounterRunning withSource:self.counterLabel];
     }
 }
 
 - (IBAction)resetTapped:(id)sender {
     [self.counterLabel reset];
     
-    [self updateUIForState:kTTCounterReset];
+    [self updateUIForState:kTTCounterReset withSource:self.counterLabel];
 }
 
 #pragma mark - Private
@@ -83,25 +83,29 @@ typedef NS_ENUM(NSInteger, kTTCounter){
     [self.counterLabel updateApperance];
 }
 
-- (void)updateUIForState:(NSInteger)state {
+- (void)updateUIForState:(NSInteger)state withSource:(TTCounterLabel*) label {
     switch (state) {
         case kTTCounterRunning:
+            label.backgroundColor = [UIColor greenColor];
             [self.startStopButton setTitle:NSLocalizedString(@"Stop", @"Stop") forState:UIControlStateNormal];
             self.resetButton.hidden = YES;
             break;
             
         case kTTCounterStopped:
+            label.backgroundColor = [UIColor grayColor];
             [self.startStopButton setTitle:NSLocalizedString(@"Start", @"Start") forState:UIControlStateNormal];
             self.resetButton.hidden = NO;
             break;
             
         case kTTCounterReset:
+            label.backgroundColor = [UIColor grayColor];
             [self.startStopButton setTitle:NSLocalizedString(@"Start", @"Start") forState:UIControlStateNormal];
             self.resetButton.hidden = YES;
             self.startStopButton.hidden = NO;
             break;
             
         case kTTCounterEnded:
+            label.backgroundColor = [UIColor redColor];
             self.startStopButton.hidden = YES;
             self.resetButton.hidden = NO;
             break;
@@ -113,8 +117,8 @@ typedef NS_ENUM(NSInteger, kTTCounter){
 
 #pragma mark - TTCounterLabelDelegate
 
-- (void)countdownDidEnd {
-    [self updateUIForState:kTTCounterEnded];
+- (void)countdownDidEnd: source {
+    [self updateUIForState:kTTCounterEnded withSource:source];
 }
 
 @end

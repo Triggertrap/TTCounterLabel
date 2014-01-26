@@ -98,7 +98,7 @@
         
         // Inform any delegates
         if (self.countdownDelegate && [self.countdownDelegate respondsToSelector:@selector(countdownDidEnd)]) {
-            [self.countdownDelegate performSelector:@selector(countdownDidEnd)];
+            [self.countdownDelegate performSelector:@selector(countdownDidEnd) withObject:self];
         }
     } else {
         self.valueString = [self timeFormattedStringForValue:_value];
