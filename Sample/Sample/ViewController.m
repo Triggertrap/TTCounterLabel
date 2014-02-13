@@ -117,7 +117,7 @@ typedef NS_ENUM(NSInteger, kTTCounter){
 
 #pragma mark - TTCounterLabelDelegate
 
-- (void)countdownDidEnd: source {
+- (void)countdownDidEndForSource:(TTCounterLabel *)source {
     [self updateUIForState:kTTCounterEnded withSource:source];
 }
 

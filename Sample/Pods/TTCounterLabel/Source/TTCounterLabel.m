@@ -94,11 +94,11 @@
     // ensure we see the last digit go to zero.
     if (self.countDirection == kCountDirectionDown && _value < 50 && self.isRunning) {
         [self stop];
-        self.valueString = @"00s.00";
+        self.valueString = self.displayMode == kDisplayModeFull ? @"00s.00" : @"00s";
         
         // Inform any delegates
-        if (self.countdownDelegate && [self.countdownDelegate respondsToSelector:@selector(countdownDidEnd)]) {
-            [self.countdownDelegate performSelector:@selector(countdownDidEnd) withObject:self];
+        if (self.countdownDelegate && [self.countdownDelegate respondsToSelector:@selector(countdownDidEndForSource:)]) {
+            [self.countdownDelegate performSelector:@selector(countdownDidEndForSource:) withObject:self];
         }
     } else {
         self.valueString = [self timeFormattedStringForValue:_value];
@@ -190,12 +190,12 @@
     
     if (hrs == 0) {
         if (mins == 0) {
-            formattedString = [NSString stringWithFormat:@"%02llus.%02llu", secs, frac];
+            formattedString = self.displayMode == kDisplayModeFull ? [NSString stringWithFormat:@"%02llus.%02llu", secs, frac] : [NSString stringWithFormat:@"%02llus", secs];
         } else {
-            formattedString = [NSString stringWithFormat:@"%02llum %02llus.%02llu", mins, secs, frac];
+            formattedString = self.displayMode == kDisplayModeFull ? [NSString stringWithFormat:@"%02llum %02llus.%02llu", mins, secs, frac] : [NSString stringWithFormat:@"%02llum %02llus", mins, secs];
         }
     } else {
-        formattedString = [NSString stringWithFormat:@"%02lluh %02llum %02llus.%02llu", hrs, mins, secs, frac];
+        formattedString = self.displayMode == kDisplayModeFull ? [NSString stringWithFormat:@"%02lluh %02llum %02llus.%02llu", hrs, mins, secs, frac] : [NSString stringWithFormat:@"%02lluh %02llum %02llus", hrs, mins, secs];
     }
     
     return formattedString;
