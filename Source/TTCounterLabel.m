@@ -97,8 +97,8 @@
         self.valueString = self.displayMode == kDisplayModeFull ? @"00s.00" : @"00s";
         
         // Inform any delegates
-        if (self.countdownDelegate && [self.countdownDelegate respondsToSelector:@selector(countdownDidEnd)]) {
-            [self.countdownDelegate performSelector:@selector(countdownDidEnd)];
+        if (self.countdownDelegate && [self.countdownDelegate respondsToSelector:@selector(countdownDidEndForSource:)]) {
+            [self.countdownDelegate performSelector:@selector(countdownDidEndForSource:) withObject:self];
         }
     } else {
         self.valueString = [self timeFormattedStringForValue:_value];

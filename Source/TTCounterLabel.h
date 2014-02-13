@@ -20,10 +20,13 @@ typedef NS_ENUM(NSInteger, kDisplayMode) {
 
 #pragma mark - TTCounterLabelDelegate
 
+@class TTCounterLabel;
+
 @protocol TTCounterLabelDelegate <NSObject>
 @optional
-- (void)countdownDidEnd;
+- (void)countdownDidEndForSource:(TTCounterLabel *)source;
 @end
+
 
 #pragma mark - TTCounterLabel
 
