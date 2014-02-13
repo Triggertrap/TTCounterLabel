@@ -14,11 +14,13 @@ typedef NS_ENUM(NSInteger, kCountDirection){
 };
 
 #pragma mark - TTCounterLabelDelegate
+@class TTCounterLabel;
 
 @protocol TTCounterLabelDelegate <NSObject>
 @optional
-- (void)countdownDidEnd;
+- (void)countdownDidEnd: (TTCounterLabel*) source;
 @end
+
 
 #pragma mark - TTCounterLabel
 
@@ -40,3 +42,4 @@ typedef NS_ENUM(NSInteger, kCountDirection){
 - (void)updateApperance;
 
 @end
+

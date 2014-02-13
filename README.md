@@ -32,6 +32,17 @@ If you're unfamiliar with CocoaPods there is a great tutorial [here](http://www.
 
 Check out the [sample project](https://github.com/TriggerTrap/TTCounterLabel/tree/master/Sample) included in the repository. Just open the '.xcworkspace' file in the Sample folder and the project should build correctly.
 
+Usage
+-----
+
+1. Add a normal Label control to your storyboard
+2. In the Identity Inspector for the label, set the Custom Class to TTCounterLabel
+3. Implement the TTCounterLabelDelegate interface to receive callbacks from the label
+4. Set the label's countDirection to one of kCountDirectionDown or kCountDirectionUp
+5. call [label setStartValue:&lt;time in ms>] to set the start value (important in the case of a downward counter).
+6. Use [label start] and [label stop] to start and stop the counter.
+7. The counter calls back on the contdownDidEnd method on the class that implements TTCounterLabelDelegate. The source parameter will be a reference to the label object that fired the event.
+
 Author(s)
 -------
 
