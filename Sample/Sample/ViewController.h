@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TTCounterLabel.h"
-
-@interface ViewController : UIViewController <TTCounterLabelDelegate>
+@interface ViewController : UIViewController
 
 @end

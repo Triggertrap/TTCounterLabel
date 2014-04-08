@@ -22,6 +22,7 @@
 		9E20A998180D3A3A004388AE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E20A97A180D3A3A004388AE /* UIKit.framework */; };
 		9E20A9A0180D3A3A004388AE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E20A99E180D3A3A004388AE /* InfoPlist.strings */; };
 		9E20A9A2180D3A3A004388AE /* SampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E20A9A1180D3A3A004388AE /* SampleTests.m */; };
+		9EE65BFD18F4090A006BCB4A /* TTCounterLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE65BFC18F4090A006BCB4A /* TTCounterLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		9E20A99D180D3A3A004388AE /* SampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SampleTests-Info.plist"; sourceTree = "<group>"; };
 		9E20A99F180D3A3A004388AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9E20A9A1180D3A3A004388AE /* SampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleTests.m; sourceTree = "<group>"; };
+		9EE65BFB18F4090A006BCB4A /* TTCounterLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCounterLabel.h; path = ../../Source/TTCounterLabel.h; sourceTree = "<group>"; };
+		9EE65BFC18F4090A006BCB4A /* TTCounterLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTCounterLabel.m; path = ../../Source/TTCounterLabel.m; sourceTree = "<group>"; };
 		DE5FD8F429DF4A1F9D8375F1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -118,6 +121,7 @@
 		9E20A97C180D3A3A004388AE /* Sample */ = {
 			isa = PBXGroup;
 			children = (
+				9EE65BFE18F40910006BCB4A /* TTCounterLabel */,
 				9E20A985180D3A3A004388AE /* AppDelegate.h */,
 				9E20A986180D3A3A004388AE /* AppDelegate.m */,
 				9E20A988180D3A3A004388AE /* Main.storyboard */,
@@ -156,6 +160,15 @@
 				9E20A99E180D3A3A004388AE /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9EE65BFE18F40910006BCB4A /* TTCounterLabel */ = {
+			isa = PBXGroup;
+			children = (
+				9EE65BFB18F4090A006BCB4A /* TTCounterLabel.h */,
+				9EE65BFC18F4090A006BCB4A /* TTCounterLabel.m */,
+			);
+			name = TTCounterLabel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,6 +306,7 @@
 				9E20A98D180D3A3A004388AE /* ViewController.m in Sources */,
 				9E20A987180D3A3A004388AE /* AppDelegate.m in Sources */,
 				9E20A983180D3A3A004388AE /* main.m in Sources */,
+				9EE65BFD18F4090A006BCB4A /* TTCounterLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

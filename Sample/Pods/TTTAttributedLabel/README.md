@@ -7,6 +7,7 @@
 Even though `NSAttributedString` support was added for UILabel in iOS 6, `TTTAttributedLabel` has several unique features:
 
 - Compatibility with iOS >= 4.3
+- Compatible with arm64 architecture when compiled with `$(ARCHS_STANDARD_INCLUDING_64_BIT)`
 - Automatic data detection
 - Manual link embedding
 - Label style inheritance for attributed strings
@@ -68,7 +69,7 @@ The normal `setText:` setter accepts both `NSString` and `NSAttributedString`; i
 In addition to supporting rich text, `TTTAttributedLabel` allows you to automatically detect links for dates, addresses, links, phone numbers, transit information, or allow you to embed your own.
 
 ``` objective-c
-label.dataDetectorTypes = NSTextCheckingTypeLink; // Automatically detect links when the label text is subsequently changed
+label.enabledTextCheckingTypes = NSTextCheckingTypeLink; // Automatically detect links when the label text is subsequently changed
 label.delegate = self; // Delegate methods are called when the user taps on a link (see `TTTAttributedLabelDelegate` protocol)
 
 label.text = @"Fork me on GitHub! (http://github.com/mattt/TTTAttributedLabel/)"; // Repository URL will be automatically detected and linked
@@ -83,9 +84,11 @@ Build and run the `TTTAttributedLabelExample` project in Xcode to see `TTTAttrib
 
 ## Requirements
 
-`TTTAttributedLabel` is compatible with iOS 4.3+ as a deployment target, but must be compiled using the iOS 6 SDK. If you get compiler errors for undefined constants, try upgrading to the latest version of Xcode, and updating your project to the recommended build settings.
+`TTTAttributedLabel` is compatible with iOS 4.3+ as a deployment target, but must be compiled using the iOS 6 SDK, or higher. If you get compiler errors for undefined constants, try upgrading to the latest version of Xcode, and updating your project to the recommended build settings.
 
 `TTTAttributedLabel` also requires the `CoreText` and `Core Graphics` frameworks. If you're installing with CocoaPods these frameworks will automatically be linked for you, otherwise you will have to add them to your project.
+
+For `arm64` compatibility, you must compile your project with the iOS 7 SDK.
 
 ## Contact
 

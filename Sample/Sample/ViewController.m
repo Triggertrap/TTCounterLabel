@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#import "TTCounterLabel.h"
+
 typedef NS_ENUM(NSInteger, kTTCounter){
     kTTCounterRunning = 0,
     kTTCounterStopped,
@@ -15,11 +17,11 @@ typedef NS_ENUM(NSInteger, kTTCounter){
     kTTCounterEnded
 };
 
-@interface ViewController ()
-
-@property (weak, nonatomic) IBOutlet TTCounterLabel *counterLabel;
-@property (weak, nonatomic) IBOutlet UIButton *startStopButton;
-@property (weak, nonatomic) IBOutlet UIButton *resetButton;
+@interface ViewController () <TTCounterLabelDelegate> {
+    IBOutlet TTCounterLabel *_counterLabel;
+    IBOutlet UIButton *_startStopButton;
+    IBOutlet UIButton *_resetButton;
+}
 
 @end
 
@@ -50,60 +52,60 @@ typedef NS_ENUM(NSInteger, kTTCounter){
 #pragma mark - IBActions
 
 - (IBAction)startStopTapped:(id)sender {
-    if (self.counterLabel.isRunning) {
-        [self.counterLabel stop];
+    if (_counterLabel.isRunning) {
+        [_counterLabel stop];
         
-        [self updateUIForState:kTTCounterStopped withSource:self.counterLabel];
+        [self updateUIForState:kTTCounterStopped withSource:_counterLabel];
     } else {
-        [self.counterLabel start];
+        [_counterLabel start];
         
-        [self updateUIForState:kTTCounterRunning withSource:self.counterLabel];
+        [self updateUIForState:kTTCounterRunning withSource:_counterLabel];
     }
 }
 
 - (IBAction)resetTapped:(id)sender {
-    [self.counterLabel reset];
+    [_counterLabel reset];
     
-    [self updateUIForState:kTTCounterReset withSource:self.counterLabel];
+    [self updateUIForState:kTTCounterReset withSource:_counterLabel];
 }
 
 #pragma mark - Private
 
 - (void)customiseAppearance {
-    [self.counterLabel setBoldFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:55]];
-    [self.counterLabel setRegularFont:[UIFont fontWithName:@"HelveticaNeue-UltraLight" size:55]];
+    [_counterLabel setBoldFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:55]];
+    [_counterLabel setRegularFont:[UIFont fontWithName:@"HelveticaNeue-UltraLight" size:55]];
     
     // The font property of the label is used as the font for H,M,S and MS
-    [self.counterLabel setFont:[UIFont fontWithName:@"HelveticaNeue-UltraLight" size:25]];
+    [_counterLabel setFont:[UIFont fontWithName:@"HelveticaNeue-UltraLight" size:25]];
     
     // Default label properties
-    self.counterLabel.textColor = [UIColor darkGrayColor];
+    _counterLabel.textColor = [UIColor darkGrayColor];
     
     // After making any changes we need to call update appearance
-    [self.counterLabel updateApperance];
+    [_counterLabel updateApperance];
 }
 
-- (void)updateUIForState:(NSInteger)state withSource:(TTCounterLabel*) label {
+- (void)updateUIForState:(NSInteger)state withSource:(TTCounterLabel *)label {
     switch (state) {
         case kTTCounterRunning:
-            [self.startStopButton setTitle:NSLocalizedString(@"Stop", @"Stop") forState:UIControlStateNormal];
-            self.resetButton.hidden = YES;
+            [_startStopButton setTitle:NSLocalizedString(@"Stop", @"Stop") forState:UIControlStateNormal];
+            _resetButton.hidden = YES;
             break;
             
         case kTTCounterStopped:
-            [self.startStopButton setTitle:NSLocalizedString(@"Resume", @"Resume") forState:UIControlStateNormal];
-            self.resetButton.hidden = NO;
+            [_startStopButton setTitle:NSLocalizedString(@"Resume", @"Resume") forState:UIControlStateNormal];
+            _resetButton.hidden = NO;
             break;
             
         case kTTCounterReset:
-            [self.startStopButton setTitle:NSLocalizedString(@"Start", @"Start") forState:UIControlStateNormal];
-            self.resetButton.hidden = YES;
-            self.startStopButton.hidden = NO;
+            [_startStopButton setTitle:NSLocalizedString(@"Start", @"Start") forState:UIControlStateNormal];
+            _resetButton.hidden = YES;
+            _startStopButton.hidden = NO;
             break;
             
         case kTTCounterEnded:
-            self.startStopButton.hidden = YES;
-            self.resetButton.hidden = NO;
+            _startStopButton.hidden = YES;
+            _resetButton.hidden = NO;
             break;
             
         default:

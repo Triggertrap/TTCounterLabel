@@ -1,4 +1,3 @@
 platform :ios, '6.0'
 
-pod 'TTCounterLabel',:git => "https://github.com/Ross-Gibson/TTCounterLabel"
 pod 'TTTAttributedLabel'

@@ -27,21 +27,20 @@ typedef NS_ENUM(NSInteger, kDisplayMode) {
 - (void)countdownDidEndForSource:(TTCounterLabel *)source;
 @end
 
-
 #pragma mark - TTCounterLabel
 
 @interface TTCounterLabel : TTTAttributedLabel
 
 @property (weak) id <TTCounterLabelDelegate> countdownDelegate;
-@property (nonatomic, assign) unsigned long long currentValue;
-@property (nonatomic, assign) unsigned long long startValue;
-@property (nonatomic, assign) NSInteger countDirection;
+@property (assign, nonatomic) unsigned long long currentValue;
+@property (assign, nonatomic) unsigned long long startValue;
+@property (assign, nonatomic) NSInteger countDirection;
 @property (strong, nonatomic) UIFont *boldFont;
 @property (strong, nonatomic) UIFont *regularFont;
-@property (nonatomic, assign) BOOL isRunning;
-@property (nonatomic, assign) kDisplayMode displayMode;
+@property (assign, nonatomic) BOOL isRunning;
+@property (assign, nonatomic) kDisplayMode displayMode;
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 - (void)start;
 - (void)stop;

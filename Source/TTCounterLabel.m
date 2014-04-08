@@ -67,7 +67,7 @@
         NSLog(@"Setting value to the max value of ULONG_LONG_MAX - 1");
         _value = (ULONG_LONG_MAX - 1);
         self.currentValue = _value;
-        [self updateDisplay];
+//        [self updateDisplay];
     }
 }
 
@@ -87,7 +87,7 @@
     }
 }
 
-#pragma mark - Private Methods
+#pragma mark - Private
 
 - (void)updateDisplay {
     // The control only displays the 10th of a millisecond, and 50 ms is enough to
@@ -201,7 +201,7 @@
     return formattedString;
 }
 
-#pragma mark - Public Methods
+#pragma mark - Public
 
 - (void)start {
     if (self.running) return;
