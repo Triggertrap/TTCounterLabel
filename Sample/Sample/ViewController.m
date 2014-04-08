@@ -17,9 +17,9 @@ typedef NS_ENUM(NSInteger, kTTCounter){
 
 @interface ViewController ()
 
-@property (strong, nonatomic) IBOutlet TTCounterLabel *counterLabel;
-@property (strong, nonatomic) IBOutlet UIButton *startStopButton;
-@property (strong, nonatomic) IBOutlet UIButton *resetButton;
+@property (weak, nonatomic) IBOutlet TTCounterLabel *counterLabel;
+@property (weak, nonatomic) IBOutlet UIButton *startStopButton;
+@property (weak, nonatomic) IBOutlet UIButton *resetButton;
 
 @end
 
@@ -47,7 +47,7 @@ typedef NS_ENUM(NSInteger, kTTCounter){
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Actions
+#pragma mark - IBActions
 
 - (IBAction)startStopTapped:(id)sender {
     if (self.counterLabel.isRunning) {
@@ -86,26 +86,22 @@ typedef NS_ENUM(NSInteger, kTTCounter){
 - (void)updateUIForState:(NSInteger)state withSource:(TTCounterLabel*) label {
     switch (state) {
         case kTTCounterRunning:
-            label.backgroundColor = [UIColor greenColor];
             [self.startStopButton setTitle:NSLocalizedString(@"Stop", @"Stop") forState:UIControlStateNormal];
             self.resetButton.hidden = YES;
             break;
             
         case kTTCounterStopped:
-            label.backgroundColor = [UIColor grayColor];
-            [self.startStopButton setTitle:NSLocalizedString(@"Start", @"Start") forState:UIControlStateNormal];
+            [self.startStopButton setTitle:NSLocalizedString(@"Resume", @"Resume") forState:UIControlStateNormal];
             self.resetButton.hidden = NO;
             break;
             
         case kTTCounterReset:
-            label.backgroundColor = [UIColor grayColor];
             [self.startStopButton setTitle:NSLocalizedString(@"Start", @"Start") forState:UIControlStateNormal];
             self.resetButton.hidden = YES;
             self.startStopButton.hidden = NO;
             break;
             
         case kTTCounterEnded:
-            label.backgroundColor = [UIColor redColor];
             self.startStopButton.hidden = YES;
             self.resetButton.hidden = NO;
             break;

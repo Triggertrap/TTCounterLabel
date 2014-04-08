@@ -12,9 +12,4 @@
 
 @interface ViewController : UIViewController <TTCounterLabelDelegate>
 
-#pragma mark - Actions
-
-- (IBAction)startStopTapped:(id)sender;
-- (IBAction)resetTapped:(id)sender;
-
 @end

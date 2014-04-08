@@ -67,7 +67,7 @@
         NSLog(@"Setting value to the max value of ULONG_LONG_MAX - 1");
         _value = (ULONG_LONG_MAX - 1);
         self.currentValue = _value;
-        [self updateDisplay];
+//        [self updateDisplay];
     }
 }
 

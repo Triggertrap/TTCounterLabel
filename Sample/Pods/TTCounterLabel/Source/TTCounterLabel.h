@@ -27,7 +27,6 @@ typedef NS_ENUM(NSInteger, kDisplayMode) {
 - (void)countdownDidEndForSource:(TTCounterLabel *)source;
 @end
 
-
 #pragma mark - TTCounterLabel
 
 @interface TTCounterLabel : TTTAttributedLabel
