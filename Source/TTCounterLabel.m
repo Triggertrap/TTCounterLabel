@@ -238,6 +238,7 @@
 }
 
 - (void)updateApperance {
+    self.maximumLineHeight = self.regularFont.pointSize;
     [self setValue:_currentValue];
 }
 
