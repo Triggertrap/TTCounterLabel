@@ -50,6 +50,8 @@ Author(s)
 
 [Ross Gibson](https://github.com/Ross-Gibson)
 
+[Valentin Kalchev](https://github.com/Valentin-Kalchev)
+
 Licence
 -------
 
